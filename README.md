@@ -1,5 +1,5 @@
 # code-challenges
 ## CC CodeChallenges Study logic programing
-### logic problem where *P*i will be problems and *S*i will soluction
+### logic problem where *P<sub>i</sub>* will be problems and *S<sub>i</sub>* will soluction
 ### first line of code contains dev name
-### you will find the problem title in Readme into *P*i
+### you will find the problem title in Readme into *P<sub>i</sub>*
