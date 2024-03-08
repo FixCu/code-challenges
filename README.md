@@ -1,5 +1,11 @@
-# code-challenges
-## CC CodeChallenges Study logic programing
-### logic problem where *P<sub>i</sub>* will be problems and *S<sub>i</sub>* will be soluction
-### first line of code contains dev name
-### you will find the problem title in Readme into *P<sub>i</sub>*
+# Code challenges
+
+Problemas de entrevistas de programación.
+
+## Listado de problemas
+
+1. [Mayor pareja de números consecutivos](./probrem_0001/README.md)
+
+## Sugerencias
+
+- Test para comprobar el código
