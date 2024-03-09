@@ -5,6 +5,15 @@ namespace IntegerToRomanTest;
 public class ConvertIntegerToRomanNumber
 {
     [Fact]
+    public void TestConvertIntegerValueToRomanNumberThrowException()
+    {
+        int negativeNumber = -1989;
+        Type exceptionType = typeof(ArgumentOutOfRangeException);
+
+        Assert.Throws(exceptionType, () => ConvertToRomanNumber.IntToRoman(negativeNumber));
+    }
+
+    [Fact]
     public void TestConvertIntegerValueToRomanNumber()
     {
         int number1989 = 1989;
