@@ -10,13 +10,16 @@ package carlosbrc1;
  */
 public class Carlosbrc1 {
 
-    // Recibo en entero en el metodo romanos
+    // Lo hice de esta forma matematica, pero me parece que haciendolo por lugares (tipo centena decena unidad) es mejor
+    // Recibo el numero como var entero en el metodo romanos
     public static String romanos(int entero) {
 
-        // variable de respuesta
+        // variable de respuesta donde voy a ir guardando los numeros romanos
         String romano = "";
         
         while (entero > 0) {
+             // si es mayor que lo que vale el numeros romano, la pongo y le descuento el valor al numero
+             // pero me queda el problema de cuando pongo uno menor antes y resto, que te lo explico en el primer caso
             if (entero >= 1000) {
                 romano += "M";
                 entero -= 1000;
@@ -80,6 +83,8 @@ public class Carlosbrc1 {
 
                 }
             } else {
+                // aqui te explico porque el primero porque fue como descubri los otros
+                // matematica, si es mayor o igual que el ultimo numero que se representa sin restar entonces le agrego este al romano y le sumo el valor, garantizando que cuando llegue el numero al valor de inmediato superior ya se le reste y se empareje
                 if (entero >= 4) {
 
                     romano += "I";
