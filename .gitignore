@@ -324,3 +324,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 /probrem_0002/carlosbrc1/nbproject/private/
+/problem_0002/stescobedo92/IntegerToRoman/.vs/IntegerToRoman
+/problem_0002/stescobedo92/IntegerToRoman/IntegerToRoman/obj
+/problem_0002/stescobedo92/IntegerToRoman/IntegerToRoman/bin/Debug/net8.0
+/problem_0002/.vs
