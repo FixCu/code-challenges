@@ -117,8 +117,8 @@ public class Carlosbrc1 {
             } else if (entero >= 5) {
                 if (entero >= 9) {
 
-                    romano += "V";
-                    entero += 5;
+                    romano += "I";
+                    entero++;
 
                 } else {
 
@@ -153,7 +153,7 @@ public class Carlosbrc1 {
     public static void main(String[] args) {
         // TODO code application logic here
         String r = romanos(3999);
-        System.out.println("Carlos Brayan soluton: " + r);
+        System.out.println("Carlos Brayan solution: " + r);
 
         System.out.println("**************************");
         System.out.println("Sergio solution: " + IntegerToRoman.convertToRomanArrayAproach(3999));
