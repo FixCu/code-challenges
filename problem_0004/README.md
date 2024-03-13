@@ -12,7 +12,7 @@ resultado: `-1`
 listado: `[6, 3, 7, 2, 7, 3, 9, 10, 1, 2, 4]`
 resultado: `7`
 
-> Nota: Aunque el número 3 aparece primero, es el 7 del cual primero aparece su primer duplicado.
+> Nota: Aunque el número 3 aparece primero, es el 7 el primer duplicado.
 
 ## Hint
 
