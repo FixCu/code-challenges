@@ -1,3 +1,6 @@
+# Clear comments help you understand the code, but some comments may be redundant or unnecessary.
+# For example, explanatory comments about obvious parts of the code could be omitted.
+
 def firstDuplicate(listv: tuple) -> int:
     """
     >>> firstDuplicate([1, 2, 3, 4])
@@ -8,10 +11,12 @@ def firstDuplicate(listv: tuple) -> int:
     7
     """
    
-    # i create new colect where i save the no duplicate
+    # Using an additional list (collection) to store non-duplicated numbers is not necessary. 
+    # You could use a set to improve efficiency, since the search operation on a set is faster 
+    # than on a list.
     collection: list = []
     
-    # foreach to list arg
+    # The listv variable name could be more descriptive, for example nums or numbers.
     for i in listv:
         # if number is in the collection of no repeats is it
         if i in collection:
