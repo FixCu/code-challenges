@@ -3,6 +3,9 @@
 
 def firstDuplicate(listv: tuple) -> int:
     """
+    
+    """
+    """
     >>> firstDuplicate([1, 2, 3, 4])
     -1
     >>> firstDuplicate([])
@@ -14,7 +17,7 @@ def firstDuplicate(listv: tuple) -> int:
     # Using an additional list (collection) to store non-duplicated numbers is not necessary. 
     # You could use a set to improve efficiency, since the search operation on a set is faster 
     # than on a list.
-    collection: list = []
+    collection = set()
     
     # The listv variable name could be more descriptive, for example nums or numbers.
     for i in listv:

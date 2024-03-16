@@ -11,4 +11,5 @@ Problemas de entrevistas de programación.
 
 ## Sugerencias
 
-- Test para comprobar el código
+- Test para comprobar el código:
+    - python comment - python -m doctest
