@@ -19,6 +19,7 @@ def firstCharacterNoRepeat(string: str) -> str:
     cant: list = []
     letter: list = []
     
+    # each letter if find sum 1 in position at cant if not find add letter en letter y add with one in cant
     for char in string:
 
         try:
