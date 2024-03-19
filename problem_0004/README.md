@@ -18,4 +18,4 @@ resultado: `7`
 
 Regular: O(n^2)
 Bien: O(nlogn)
-Exelente: O(n)
+Exelente: O(n) 
