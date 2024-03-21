@@ -9,12 +9,12 @@ def firstCharacterUnique(string:str) -> str:
         str: The first character with cero ocurrenci
         
     Test:
-    >>> firstCharacterNoRepeat("abacabad")
-    "c"
-    >>> firstCharacterNoRepeat("ngrhhqbhnsipkcoqjyviikvxbxyphsnjpdxkhtadltsuxbfbrkof")
-    "g"
-    >>> firstCharacterNoRepeat("abacabaabacaba")
-    "_"
+    >>> firstCharacterUnique("abacabad")
+    'c'
+    >>> firstCharacterUnique("ngrhhqbhnsipkcoqjyviikvxbxyphsnjpdxkhtadltsuxbfbrkof")
+    'g'
+    >>> firstCharacterUnique("abacabaabacaba")
+    '_'
     """
 
     dicc = {}
@@ -30,5 +30,5 @@ def firstCharacterUnique(string:str) -> str:
             return i
     return "_"
 
-string = "aacssdcdds"
-print(firstCharacterUnique(string))
+# string = "aacssdcdds"
+# print(firstCharacterUnique(string))

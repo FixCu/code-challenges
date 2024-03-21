@@ -12,7 +12,7 @@ Problemas de entrevistas de programación.
 ## Sugerencias
 
 - Test para comprobar el código:
-   - python comment - python -m doctest
+   - python comment - `python -m doctest`
 - Run C++ application (.cpp)
   - Compile code `g++ -m binary <file_name>.cpp`
   - Execute binary `./binary`
