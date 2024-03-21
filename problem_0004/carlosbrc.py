@@ -26,7 +26,7 @@ def firstDuplicate(listv: tuple) -> int:
             return i
         else:
             # else it add to the collection
-            collection.append(i)
+            collection.add(i)
     
     # i say than not exist duple else no return before
     return -1
