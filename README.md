@@ -4,10 +4,13 @@ Problemas de entrevistas de programación.
 
 ## Listado de problemas
 
-1. [Mayor pareja de números consecutivos](./probrem_0001/README.md)
+1. [Mayor pareja de números consecutivos](./problem_0001/README.md)
 2. [Enteros to Romanos](./problem_0002/README.md)
 3. [Palíndrome](./problem_0003/README.md)
 4. [Primer duplicado (Google)](./problem_0004/README.md)
+5. [Longest Common Prefix](./problem_0005/README.md)
+6. [Primer Caracter no repetido (amazon)](./problem_0006/README.md)
+7. [La escalera (apple, adobe)](./problem_0007/README.md)
 
 ## Sugerencias
 

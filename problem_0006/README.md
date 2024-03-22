@@ -1,4 +1,4 @@
-# 5. Primer Caracter no repetido
+# 6. Primer Caracter no repetido (amazon)
 
 Dada una cadena `s` formada por solo caracteres en minúscula del alfabeto inglés, encuentra y retorna el primer caracter que solo tenga una ocurrencia.
 Si no existe tal caracter, retorna `_`.
