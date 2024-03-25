@@ -9,11 +9,11 @@ def firstCharacterNoRepeat(string: str) -> str:
         
     Test:
     >>> firstCharacterNoRepeat("abacabad")
-    "c"
+    'c'
     >>> firstCharacterNoRepeat("ngrhhqbhnsipkcoqjyviikvxbxyphsnjpdxkhtadltsuxbfbrkof")
-    "g"
+    'g'
     >>> firstCharacterNoRepeat("abacabaabacaba")
-    "_"
+    '_'
     """
     # created an array to cant for same position than insert letters 
     cant: list = []

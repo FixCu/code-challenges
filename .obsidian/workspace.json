@@ -1,0 +1,165 @@
+{
+  "main": {
+    "id": "7153fa086c876fb3",
+    "type": "split",
+    "children": [
+      {
+        "id": "17e5a4e28175e711",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bc50481999572fc7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "problem_0007/README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "556d374426c31776",
+    "type": "split",
+    "children": [
+      {
+        "id": "0dc7268b762c64ff",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "16c0a82b0f8e82aa",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e63a912a869831a8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "574ea09878e2c8e9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "049efb25cfb570c4",
+    "type": "split",
+    "children": [
+      {
+        "id": "64668cfc12f3a544",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "91413bf3e6d1fa22",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "problem_0007/README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "59c2aa60a83a37bf",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "problem_0007/README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d156da44a6d14a53",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "636fe86518dcb22e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "problem_0007/README.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "bc50481999572fc7",
+  "lastOpenFiles": [
+    "problem_0007/README.md~",
+    "problem_0007/example_img.png",
+    "problem_0007/Pasted image 20240322112105.png",
+    "README.md",
+    "problem_0006/README.md",
+    "problem_0007/README.md",
+    "problem_0001/README.md",
+    "probrem_0001/README.md",
+    "problem_0002/README.md",
+    "problem_0005/README.md",
+    "problem_0004/README.md",
+    "problem_0003/README.md",
+    "probrem_0001"
+  ]
+}
