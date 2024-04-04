@@ -32,6 +32,5 @@ def amountSI(n) -> int:
     else:
         return (amountSI(n-1) + amountSI(n-2))
 
-print(amountSI(4))
 
 
