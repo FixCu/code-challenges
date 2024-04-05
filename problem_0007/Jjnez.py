@@ -1,3 +1,5 @@
+dp = [-1] * 55
+
 def amountSI(n) -> int:
     """Climbing a ladder that has <n> steps.
        Can advance `1` or `2` steps at a time.
@@ -29,8 +31,9 @@ def amountSI(n) -> int:
         return 1
     if n == 2:
         return 2
-    else:
-        return (amountSI(n-1) + amountSI(n-2))
-
+    if dp[n] == -1:
+        dp[n] = (amountSI(n-1) + amountSI(n-2))
+    
+    return dp
 
 
