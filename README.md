@@ -10,6 +10,8 @@ Problemas de entrevistas de programación.
 4. [Primer duplicado (Google)](./problem_0004/README.md)
 5. [Longest Common Prefix](./problem_0005/README.md)
 6. [Primer Caracter no repetido](./problem_0006/README.md)
+7. [La escalera (apple, adobe)](./problem_0007/README.md)
+8. [MonkeyType clone](./problem_0008/README.md)
 
 ## Sugerencias
 
