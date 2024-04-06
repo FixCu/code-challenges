@@ -4,17 +4,298 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        /*code styles*/
+        :root {
+            --base-color: #646669;
+            --bg-color: #323437;
+            --error-color: #ca4754;
+            --good-color: #4caf50;
+            --cursor-color: #c89224;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            font-family: Arial, monospace;
+            font-size: 24px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: var(--base-color);
+            margin: 0 0 12px 0;
+        }
+
+        svg {
+            margin-top: 12px;
+            fill: white;
+            padding: 12px;
+            border-radius: 4px;
+            color: var(--base-color);
+            transition: background-color .5s linear;
+
+            &:hover {
+                fill: white;
+                background-color: var(--base-color);
+            }
+        }
+
+        #wpm-score, #acc-score {
+            color: white;
+        }
+
+        .show-animation {
+            display: none;
+            animation: fadeIn .5s linear;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        my-char {
+            position: relative;
+            color: var(--base-color);
+
+            &.cursor::before {
+                content: '|';
+                position: absolute;
+                top: -3px;
+                left: -3px;
+                color: var(--cursor-color);
+                overflow: hidden;
+                animation: reveal 1.5s linear infinite;
+            }
+
+            &.wrong {
+                color: var(--error-color);
+            }
+
+            &.good {
+                color: var(--good-color);
+            }
+        }
+
+        @keyframes reveal {
+            50% {
+                color: rgba(200, 146, 36, 0.2);
+            }
+            100% {
+                color: #c89224;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-row {
+            flex-direction: row;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .items-start {
+            align-items: start;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
     </style>
 </head>
-<body>
+<body class="flex flex-row justify-center items-center">
 <!--code html-->
-<svg style="width: 20px; height: 20px" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"/></svg>
+<div id="game-window"
+     class="flex flex-col justify-center items-start show-animation hidden"
+     style="width: 50%;padding: 12px">
+    <span id="timer"
+          style="margin-bottom: 12px;"
+          class="w-100"></span>
+    <div class="w-100"
+         id="text"
+         style="">
+    </div>
+</div>
+<div id="score-window"
+     class="flex flex-col justify-center items-start show-animation">
+    <h1>wpm: <span id="wpm-score">50</span></h1>
+    <h1>acc: <span id="acc-score">70%</span></h1>
+    <div class="flex flex-row w-100 justify-center">
+        <svg style="width: 20px;height: 20px;"
+             onclick="gameInit()"
+             viewBox="0 0 512 512">
+            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"/>
+        </svg>
+    </div>
+</div>
 <script>
-    // code javascript
-    (function some(title) {
-        console.log(title)
-    })("example")
+    const text = "In the twilight of dusk, the city awakens with a symphony of lights. Streets bustling, voices murmuring, life pulsating through every corner. Shadows dance on towering skyscrapers as dreams take flight under the moon's gentle gaze. Amidst the chaos, a solitary figure finds solace in the rhythm of the urban melody, a reminder that amidst the noise, there's beauty in the quiet moments.";
+
+    const $textEle = document.getElementById('text');
+    const $timerEle = document.getElementById('timer');
+    const $scoreEle = document.getElementById('score-window');
+    const $gameEle = document.getElementById('game-window');
+    const $wpmEle = document.getElementById('wpm-score');
+    const $accEle = document.getElementById('acc-score');
+
+    // constants
+    const EMPTY = 0;
+    const GOOD = 1;
+    const WRONG = 2;
+    const TIMER = 30;
+
+    // game elements
+    let characters = [];
+    let charactersStatus = [];
+    let $charactersEle = [];
+
+    // game variables
+    let timer = TIMER;
+    let currentPosition = 0;
+    let interval = null;
+
+    // start game first time
+    gameInit();
+
+    function gameOver() {
+        window.onkeydown = null;
+        $gameEle.classList.add('hidden');
+        $scoreEle.classList.remove('hidden');
+
+        // calculate wpm score
+        let words = 0, goodWords = 0;
+        for (let i = 0; i < characters.length; i++) {
+            if (isLetter(characters[i]) || isDigit(characters[i])) {
+                let isGood = true;
+                while (i < characters.length && (isLetter(characters[i]) || isDigit(characters[i]))) {
+                    if (charactersStatus[i] !== GOOD) {
+                        isGood = false;
+                    }
+                    i++;
+                }
+                if (isGood) {
+                    goodWords++;
+                }
+                words++;
+            }
+        }
+        const wpm = Math.round(goodWords / (TIMER / 60));
+        $wpmEle.innerText = wpm + '';
+
+        // calculate accuracy score
+        let goodTotal = 0, wrongTotal = 0;
+        for (let i = 0; i < characters.length; i++) {
+            if (charactersStatus[i] === GOOD) {
+                goodTotal++;
+            } else if (charactersStatus[i] === WRONG) {
+                wrongTotal++;
+            }
+        }
+        const acc = (goodTotal / (goodTotal + wrongTotal) * 100).toFixed(2);
+        $accEle.innerText = acc + '%';
+    }
+
+    function gameInit() {
+        // show window
+        $scoreEle.classList.add('hidden');
+        $gameEle.classList.remove('hidden');
+
+        // show text
+        characters = text.split('');
+        charactersStatus = new Array(characters.length).fill(EMPTY);
+        $textEle.innerHTML = '';
+        $charactersEle = [];
+        for (let i = 0; i < characters.length; i++) {
+            const $char = document.createElement('my-char');
+            $char.innerText = characters[i];
+            $textEle.appendChild($char);
+            $charactersEle.push($char);
+        }
+
+        // start cursor position
+        currentPosition = 0;
+        $charactersEle[currentPosition].classList.add('cursor');
+
+        // start timer
+        timer = TIMER;
+        $timerEle.innerText = timer + '';
+
+        // handle keydown event
+        window.onkeydown = keyDownEvent;
+    }
+
+    function keyDownEvent(e) {
+        if (interval === null) {
+            startTimer();
+        }
+        if (isValidCharacter(e.key)) {
+            $charactersEle[currentPosition].classList.remove('cursor');
+            if (e.key !== characters[currentPosition]) {
+                $charactersEle[currentPosition].classList.add('wrong');
+                charactersStatus[currentPosition] = WRONG;
+            } else {
+                $charactersEle[currentPosition].classList.add('good');
+                charactersStatus[currentPosition] = GOOD;
+            }
+            currentPosition++;
+            $charactersEle[currentPosition].classList.add('cursor');
+        } else if (e.key === 'Backspace') {
+            $charactersEle[currentPosition].classList.remove('cursor');
+            currentPosition--;
+            charactersStatus[currentPosition] = EMPTY;
+            $charactersEle[currentPosition].classList.remove('wrong');
+            $charactersEle[currentPosition].classList.remove('good');
+            $charactersEle[currentPosition].classList.add('cursor');
+        }
+    }
+
+    function startTimer() {
+        interval = setInterval(() => {
+            timer--;
+            $timerEle.innerText = timer + '';
+            if (timer === 0) {
+                clearInterval(interval);
+                interval = null;
+                window.onkeydown = null;
+                gameOver();
+            }
+        }, 1000);
+    }
+
+    function isValidCharacter(c) {
+        return c.length === 1 && (isDigit(c) || isLetter(c) || c === ' ' || c === ',' || c === '.' || c === '!' || c === '?' || c === '\'' || c === '"');
+    }
+
+    function isDigit(c) {
+        return !isNaN(c) && c.trim() !== '';
+    }
+
+    function isLetter(c) {
+        return c.toLowerCase() !== c.toUpperCase();
+    }
 </script>
 </body>
 </html>
