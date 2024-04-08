@@ -187,27 +187,6 @@
         $scoreEle.classList.remove('hidden');
         $textEle.innerHTML = '';
 
-        // calculate wpm score
-        let words = 0, goodWords = 0;
-        for (let i = 0; i < characters.length; i++) {
-            if (isLetter(characters[i]) || isDigit(characters[i])) {
-                let isGood = true;
-                while (i < characters.length && (isLetter(characters[i]) || isDigit(characters[i]))) {
-                    if (charactersStatus[i] !== GOOD) {
-                        isGood = false;
-                    }
-                    i++;
-                }
-                if (isGood) {
-                    goodWords++;
-                }
-                words++;
-            }
-        }
-        const wpm = Math.round(goodWords / (TIMER / 60));
-        $wpmEle.innerText = wpm + '';
-
-        // calculate accuracy score
         let goodTotal = 0, wrongTotal = 0;
         for (let i = 0; i < characters.length; i++) {
             if (charactersStatus[i] === GOOD) {
@@ -216,7 +195,14 @@
                 wrongTotal++;
             }
         }
-        const acc = (goodTotal / (goodTotal + wrongTotal) * 100).toFixed(2);
+
+        // calculate wpm score
+        const total = goodTotal + wrongTotal;
+        const wpm = Math.round((total / 5) / (TIMER / 60));
+        $wpmEle.innerText = wpm + '';
+
+        // calculate accuracy score
+        const acc = (goodTotal / total * 100).toFixed(2);
         $accEle.innerText = acc + '%';
     }
 

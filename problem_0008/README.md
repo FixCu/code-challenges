@@ -24,6 +24,7 @@
 
 ## Ayuda
 
+- [Fórmulas para calcular wpm y acc](https://typingcom.helpscoutdocs.com/article/205-how-wpm-words-per-minute-and-accuracy-are-calculated-teacher-student#:~:text=A%20%22word%22%20is%20equivalent%20to,%2F%202%20min%20%3D%2030%20WPM.)
 - [video de midudev](https://www.youtube.com/watch?v=157qVlTelOg)
 
 ![example](./example.png)
