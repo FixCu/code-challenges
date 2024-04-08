@@ -80,6 +80,7 @@
 
             &.good {
                 color: var(--good-color);
+                position: relative;
             }
         }
 
@@ -135,7 +136,7 @@
           class="w-100"></span>
     <div class="w-100"
          id="text"
-         style="">
+         style="white-space: break-spaces">
     </div>
 </div>
 <div id="score-window"
@@ -152,8 +153,6 @@
     </div>
 </div>
 <script>
-    const text = "In the twilight of dusk, the city awakens with a symphony of lights. Streets bustling, voices murmuring, life pulsating through every corner. Shadows dance on towering skyscrapers as dreams take flight under the moon's gentle gaze. Amidst the chaos, a solitary figure finds solace in the rhythm of the urban melody, a reminder that amidst the noise, there's beauty in the quiet moments.";
-
     const $textEle = document.getElementById('text');
     const $timerEle = document.getElementById('timer');
     const $scoreEle = document.getElementById('score-window');
@@ -168,6 +167,7 @@
     const TIMER = 30;
 
     // game elements
+    let text = "";
     let characters = [];
     let charactersStatus = [];
     let $charactersEle = [];
@@ -184,6 +184,7 @@
         window.onkeydown = null;
         $gameEle.classList.add('hidden');
         $scoreEle.classList.remove('hidden');
+        $textEle.innerHTML = '';
 
         // calculate wpm score
         let words = 0, goodWords = 0;
@@ -218,12 +219,13 @@
         $accEle.innerText = acc + '%';
     }
 
-    function gameInit() {
+    async function gameInit() {
         // show window
         $scoreEle.classList.add('hidden');
         $gameEle.classList.remove('hidden');
 
         // show text
+        text = await getText();
         characters = text.split('');
         charactersStatus = new Array(characters.length).fill(EMPTY);
         $textEle.innerHTML = '';
@@ -245,6 +247,22 @@
 
         // handle keydown event
         window.onkeydown = keyDownEvent;
+    }
+
+    async function getText() {
+        // get random text from free api on internet (baconator-bacon-ipsum.p.rapidapi.com)
+        // because the free api was blocked by CORS policy, I used a proxy to bypass it (corsproxy.io)
+        const url = encodeURIComponent("https://baconator-bacon-ipsum.p.rapidapi.com?type=all-meat&paras=1");
+        try {
+            const res = await fetch(`https://corsproxy.io?${url}`, {
+                method: "GET",
+            });
+            const resText = await res.text();
+            return JSON.parse(resText)[0];
+        } catch (e) {
+            console.error(e);
+        }
+        return '';
     }
 
     function keyDownEvent(e) {
@@ -286,7 +304,7 @@
     }
 
     function isValidCharacter(c) {
-        return c.length === 1 && (isDigit(c) || isLetter(c) || c === ' ' || c === ',' || c === '.' || c === '!' || c === '?' || c === '\'' || c === '"');
+        return c.length === 1 && (isDigit(c) || isLetter(c) || c === '-' || c === ' ' || c === ',' || c === '.' || c === '!' || c === '?' || c === '\'' || c === '"');
     }
 
     function isDigit(c) {
