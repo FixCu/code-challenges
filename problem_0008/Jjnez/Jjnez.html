@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JjnezMonkeyTypeClone</title>
+
+    <style>
+        body {
+            background: #323437;
+            color: #636568;
+            font-family: Menlo, monospace;
+            padding: 32px;
+            display: grid;
+            justify-content: center;
+        }
+
+        section {
+            padding: 15px;
+        }
+
+        time {
+            color: #c89224;
+        }
+
+        input {
+            z-index: -999;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            /* opacity: 0; */
+        }
+
+        p {
+            display: flex;
+            flex-wrap: wrap;
+            /* gap: 2px 0.5px; */
+            margin-top: 4px;
+        }
+
+        x-letter {
+            color: #636568;
+            position: relative;
+
+            &.active::before {
+                content: '|';
+                color: #c89224;
+                font-size: 14px;
+                position: absolute;
+                left: -5px;
+                animation: 1,1s blink infinite ease-in-out;
+            }
+
+            &.active.is-last::before {
+                left: 6px;
+            }
+
+            &.correct {
+                color: green;
+            }
+
+            &.incorrect {
+                color: red;
+            }
+        }
+
+        @keyframes blink {
+            0%, 25% {
+                opacity: 1;
+            }
+            75% {
+                opacity: 0;
+            }
+        }
+
+        
+
+    </style>
+  </head>
+
+  <body>
+    <section id="game">
+      <time id="time"></time>
+      <div id="p"></div>
+      <input id="input" autofocus style="background-color: #636568" />
+    </section>
+
+    <script>
+        const $timeEle = document.querySelector('time');
+        const $paragraph = document.querySelector('#p');
+        const $input = document.querySelector('input');
+
+        let letters = [];
+        let position = 0;
+
+        const TIME = 30;
+
+        const TEXT =
+            "hay infinidad de atajos, y cada extensión que añadas puede que también incluya los suyos propios para sus funcionalidades. Aquí hemos destacado los más relevante para el uso diario.";
+
+        let text = [];
+        let currentTime = TIME;
+
+        initGame();
+        initEvents();
+
+        function initGame() {
+            text = TEXT.split('');
+
+            currentTime = TIME;
+            $timeEle.textContent = currentTime;
+
+            $paragraph.innerHTML = text
+            .map((character, index) => {
+                return `<x-letter>${character}</x-letter>`;
+            })
+            .join("");
+
+            letters = $paragraph.children;
+            position = 0;
+            
+            letters[position].classList.add('active');
+
+            const interval = setInterval(() => {
+                currentTime--;
+                $timeEle.textContent = currentTime;
+
+                if (currentTime === 0) {
+                clearInterval(interval);
+                console.log("Game Over");
+                }
+            }, 1000);
+        }
+
+        function initEvents() {
+            // document.addEventListener('keydown', () => {
+            //     $input.focus()
+            // });
+
+            window.addEventListener('keyup', onkeyup);
+        }
+
+        function onkeyup(e) {
+            console.log(e.key);
+
+            if (e.key === 'Backspace') {
+                letters[position].classList.remove('active');
+                position--;
+                letters[position].classList.add('active');
+                letters[position].classList.remove('correct', 'incorrect');
+            } else { 
+                if(text[position] === e.key) {
+                    letters[position].classList.add('correct');
+                } else {
+                    letters[position].classList.add('incorrect');
+                }
+                letters[position].classList.remove('active');
+                position ++;
+                letters[position].classList.add('active');
+            }
+        }
+        
+        
+    </script>
+  </body>
+</html>
