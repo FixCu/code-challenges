@@ -15,6 +15,10 @@
             font-size: 24px;
         }
 
+        h1 {
+            color: #636568;
+        }
+
         svg {
             fill: white;
             border-radius: 4px;
@@ -28,7 +32,7 @@
         }
 
         #time {
-            color: #c89224;
+            color: #e2b714;
             margin-bottom: 10px;
         }
 
@@ -40,7 +44,7 @@
             content: "|";
             position: absolute;
             left: -8px;
-            color: #c89224;
+            color: #e2b714;
             overflow: hidden;
             animation: reveal 1.5s linear infinite;
             }
@@ -59,7 +63,7 @@
             color: rgba(200, 146, 36, 0.2);
             }
             100% {
-            color: #c89224;
+            color: #e2b714;
             }
         }
 
@@ -116,22 +120,33 @@
   <body class="flex flex-row justify-center items-center">
     <!--code html-->
     <section id="game" class="flex flex-col justify-center w-60 h-50">
-        <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row justify-between items-center"
+             style="margin-bottom: 10px;">
             <time id="time" style="width: 20px; height: 20px"></time>
-            <svg
-            style="width: 20px; height: 20px"
-            onclick="gameInit()"
-            viewBox="0 0 512 512"
-            >
-            <path
-                d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"
-            />
+            <svg style="width: 20px; height: 20px"
+                 onclick="initGame()"
+                 viewBox="0 0 512 512">
+                <path d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"/>
             </svg>
         </div>
-        <div id="text"></div>
+        <div id="text"
+             style="text-align: justify; word-break: break-all;" >
+        </div>
     </section>
-
-    <section id="end-game"></section>
+<!-- style="word-break:break-all;" -->
+    <section class="flex flex-row justify-center items-center" 
+             id="end-game">
+        <div class="flex flex-col justify-center w-100"
+             id="endGame">
+            <h1>wpm - <span id="wpm" style="color: #e2b714;"></span></h1>
+            <h1>acc - <span id="acc" style="color: #e2b714;"></span></h1>
+            <svg style="margin: auto; width: 20px; height: 20px"
+                 onclick="initGame()"
+                 viewBox="0 0 512 512">
+                <path d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"/>
+            </svg>
+        </div>
+    </section>
 
     <!-- code javascript -->
     <!-- <script href="javascript.js"></script> -->
@@ -141,11 +156,12 @@
         const $time = document.getElementById("time");
         const $initGame = document.getElementById("game");
         const $endGame = document.getElementById("end-game");
+        const $wpm = document.getElementById('wpm');
+        const $acc = document.getElementById('acc');
 
         // constants
-        const TIME = 30;
-        const TEXT =
-            "hay infinidad de atajos, y cada extencion que puede que tambien incluya los suyos propios para sus funcionalidades. Aqui hemos descartado los mas relevantes destacados para el uso diario Tambien es una composicion de caracteres imprimibles generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona";
+        const TIME = 60;
+        const TEXT = "hay infinidad de atajos, y cada extencion que puede que tambien incluya los suyos propios para sus funcionalidades. Aqui hemos descartado los mas relevantes destacados para el uso diario Tambien es una composicion de caracteres imprimibles generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona";
 
         // variables
         let letters = [];
@@ -154,12 +170,20 @@
         let textRandom = "";
         let position = 0;
         let currentTime = TIME;
-        let interval = true;
+        let boolean = true;
 
-        // Iniciando Juego
+        // variables end Game
+        let wpm = 40;
+        let acc = 50;
+
+        // starting Game
+        endGame();
         initGame();
 
         function initGame() {
+            $endGame.classList.add('hidden');
+            $initGame.classList.remove('hidden');
+
             currentTime = TIME;
             $time.textContent = currentTime;
 
@@ -178,9 +202,17 @@
             window.addEventListener("keydown", onkeydown);
         }
 
+        function endGame() {
+            $initGame.classList.add("hidden");
+            $endGame.classList.remove("hidden");
+
+            $wpm.textContent = wpm;
+            $acc.textContent = acc + "%";
+        }
+
         function onkeydown(e) {
-            if (interval) {
-            interval = false;
+            if (boolean) {
+            boolean = false;
             initTime();
             }
             console.log(validate(e));
@@ -208,6 +240,19 @@
         }
 
         // Function for initGame
+        function initTime() {
+            const interval = setInterval(() => {
+                currentTime--;
+                $time.textContent = currentTime;
+                if (currentTime === 0) {
+                    clearInterval(interval);
+                    boolean = true;
+                    console.log(boolean);
+                    endGame();
+                }
+            }, 1000);
+        }
+
         function getText() {
             words = TEXT.split(" ");
             textRandom = "";
@@ -233,17 +278,8 @@
             return true;
         }
 
-        function initTime() {
-            const interval = setInterval(() => {
-            currentTime--;
-            $time.textContent = currentTime;
-            if (currentTime === 0) {
-                clearInterval(interval);
-                interval = true;
-                //gameover();
-            }
-            }, 1000);
-        }
+        
+
     </script>
   </body>
 </html>
