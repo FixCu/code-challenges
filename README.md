@@ -12,6 +12,7 @@ Problemas de entrevistas de programación.
 6. [Primer Caracter no repetido](./problem_0006/README.md)
 7. [La escalera (apple, adobe)](./problem_0007/README.md)
 8. [MonkeyType clone](./problem_0008/README.md)
+8. [Cors proxy](./problem_0009/README.md)
 
 ## Sugerencias
 
