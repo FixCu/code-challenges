@@ -7,7 +7,8 @@ Este es un simple API proxy CORS construido con FastAPI en Python. Permite reali
 1. Clona este repositorio en tu máquina local:
 
     ```bash
-    git clone <url-del-repositorio>
+    git clone https://github.com/FixCu/code-challenges
+    cd problem_0009/carlosbrc/
     ```
 
 2. Usar entorno virtual de Python (Opcional):
